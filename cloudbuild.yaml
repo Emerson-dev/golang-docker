@@ -1,6 +1,10 @@
 # substitutions:
 #     _DOCKER_GOLANG_VERSION: 1.0
 steps:
+- id: "Build"
+  name: 'golang'
+  args: ['go', 'build', '.']
+
 - id: "Rodando teste"
   name: 'gcr.io/cloud-builders/go'
   args: ['go', 'test', '-v', './test/*.go']
