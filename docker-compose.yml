@@ -1,20 +1,10 @@
-version: '3.7'
+version: "3"
 services:
-  golang:
-    container_name: app-golang
-    # image: vremerson/codeeducation:1.0
+  test:
+    image: "gcr.io/${PROJECT_ID}/${REPO_NAME}:builder"
     build:
+      args: [target, builder, cache-from, "gcr.io/${PROJECT_ID}/${REPO_NAME}:builder"]
       context: .
       dockerfile: Dockerfile
-    hostname: app-golang
-    deploy:
-      restart_policy: { condition: on-failure }
-      resources:
-        limits:
-          memory: 100M
-#     networks:
-#       - golang-net
-
-# networks:
-#   golang-net:
-#     driver: overlay
+    entrypoint: >
+      go test -v ./...

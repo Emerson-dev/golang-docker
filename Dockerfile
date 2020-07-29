@@ -1,14 +1,19 @@
-# 2.07 MB
-FROM golang:alpine AS builder
+FROM golang:1.11 as builder
 
-WORKDIR /app
+WORKDIR /src
+
+COPY go.mod .
+
+RUN go mod download
 
 COPY . .
-RUN go build  -ldflags '-w -s' -a -installsuffix cgo -o /go/main .
-# RUN go build -o /go/main
+
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go install -a -installsuffix "static" golang-docker
 
 FROM scratch
 
-COPY --from=builder /go/main /go/main
+USER 1000
 
-CMD ["/go/main"]
+COPY --from=builder /go/bin/golang-docker /bin/golang-docker
+
+ENTRYPOINT ["/bin/golang-docker"]
