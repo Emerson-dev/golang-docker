@@ -3,7 +3,7 @@ FROM golang:alpine AS builder
 
 WORKDIR /app
 
-COPY main.go .
+COPY . .
 RUN go build  -ldflags '-w -s' -a -installsuffix cgo -o /go/main .
 # RUN go build -o /go/main
 

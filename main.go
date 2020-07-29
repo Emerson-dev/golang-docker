@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"./calc"
+	"fmt"
+)
 
 func main() {
- fmt.Println("Code.education Rocks!")
+	var math calc.IMath
+	math = calc.Sum{X: 5, Y: 5}
+	fmt.Printf("A Soma de %d é %d\n", math, math.Calc())
 }
