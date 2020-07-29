@@ -6,8 +6,10 @@ steps:
   args: ['go', 'build', '.']
 
 - id: "Rodando teste"
-  name: 'gcr.io/cloud-builders/go'
-  args: ['go', 'test', '-v', './test/*.go']
+  name: 'gcr.io/$PROJECT_ID/go'
+  args: ['test', '-v', './test/*.go']
+  # name: 'gcr.io/cloud-builders/go'
+  # args: ['go', 'test', '-v', './test/*.go']
 
 # - id: "Gerando imagem"
 #   name: 'gcr.io/cloud-builders/docker'
