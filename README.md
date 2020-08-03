@@ -13,7 +13,8 @@ go mod init example
 
 go build ./...
 
-go install
+p
+
 
 go test ./...
 
