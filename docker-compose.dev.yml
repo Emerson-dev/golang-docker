@@ -17,4 +17,4 @@ services:
 
 # networks:
 #   golang-net:
-#     driver: overlay
+#     driver: bridge
